@@ -60,7 +60,7 @@ let addData = () => {
   console.log("Sending newData", newData);
   fetch(`http://localhost:3000/task/addtask`, {
     method: "POST",
-    mode: "no-cors",
+    mode: "cors",
     /* headers: { Accept: "application/json", "Content-Type": "application/json" }, */
     body: JSON.stringify(newData),
   })

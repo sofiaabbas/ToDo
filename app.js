@@ -10,7 +10,8 @@ app.use(cors());
 /*app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()) */
 app.use(express.urlencoded({extended: true}))
-app.use(express.json())
+app.use(express.json({type: "*/*"}))
+//app.use(express.json())
 /* app.post("/task/addtask", (req, res, next) => {
     console.log("Logging req.body..", req.body)
     next();

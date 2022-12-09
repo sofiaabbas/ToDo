@@ -10,6 +10,7 @@ let data = [{}];
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  console.log("prevent submit");
   formValidation();
   addData();
 });
@@ -31,6 +32,7 @@ let formValidation = () => {
 };
 
 let renderTasks = () => {
+  tasks.innerHTML = "";
   data.map((x, y) => {
     return (tasks.innerHTML += `
     <div id=${y}>
@@ -50,13 +52,17 @@ let renderTasks = () => {
 };
 
 let addData = () => {
+  const newData = {
+    task: textInput.value,
+    date: dateInput.value,
+    description: textarea.value,
+  };
+  console.log("Sending newData", newData);
   fetch(`http://localhost:3000/task/addtask`, {
     method: "POST",
-    body: JSON.stringify({
-      task: textInput.value,
-      date: dateInput.value,
-      description: textarea.value,
-    }),
+    mode: "no-cors",
+    /* headers: { Accept: "application/json", "Content-Type": "application/json" }, */
+    body: JSON.stringify(newData),
   })
     .then((result) => {
       //return result.json();
